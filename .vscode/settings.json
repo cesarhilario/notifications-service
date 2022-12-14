@@ -4,6 +4,7 @@
     "application": "app",
     "entities": "class",
     "infra": "tools",
-    "use-cases": "functions"
+    "use-cases": "functions",
+    "repositories": "meta",
   }
 }
