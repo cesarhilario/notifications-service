@@ -3,6 +3,7 @@
   "material-icon-theme.folders.associations": {
     "application": "app",
     "entities": "class",
-    "infra": "tools"
+    "infra": "tools",
+    "use-cases": "functions"
   }
 }
