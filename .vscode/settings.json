@@ -2,9 +2,11 @@
   "material-icon-theme.activeIconPack": "nest",
   "material-icon-theme.folders.associations": {
     "application": "app",
+    "dtos": "typescript",
     "entities": "class",
+    "http": "container",
     "infra": "tools",
-    "use-cases": "functions",
     "repositories": "meta",
+    "use-cases": "functions",
   }
 }
