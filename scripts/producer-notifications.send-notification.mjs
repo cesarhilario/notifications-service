@@ -5,7 +5,6 @@ import env from 'dotenv';
 env.config();
 
 async function bootstrap() {
-  console.log(process.env);
   const kafka = new Kafka({
     clientId: 'test-producer',
     brokers: [process.env.KAFKA_BROKER ?? ''],
