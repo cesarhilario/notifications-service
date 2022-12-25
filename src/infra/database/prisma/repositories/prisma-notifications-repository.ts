@@ -1,7 +1,7 @@
 import { PrismaNotificationMapper } from './../mappers/prisma-notification-mapper';
 import { Injectable } from '@nestjs/common';
-import { Notification } from '../../../../application/entities/notification';
-import { NotificationRepository } from '../../../../application/repositories/notification-repository';
+import { Notification } from '@application/entities/notification';
+import { NotificationRepository } from '@application/repositories/notification-repository';
 import { PrismaService } from '../prisma.service';
 
 @Injectable()
@@ -9,7 +9,35 @@ export class PrismaNotificationRepository implements NotificationRepository {
   constructor(private prisma: PrismaService) {}
 
   async findById(notificationId: string): Promise<Notification | null> {
-    throw new Error('Method not implemented.');
+    const notification = await this.prisma.notification.findUnique({
+      where: {
+        id: notificationId,
+      },
+    });
+
+    if (!notification) {
+      return null;
+    }
+
+    return PrismaNotificationMapper.toDomain(notification);
+  }
+
+  async findManyByRecipientId(recipientId: string): Promise<Notification[]> {
+    const notifications = await this.prisma.notification.findMany({
+      where: { recipientId },
+    });
+
+    return notifications.map(PrismaNotificationMapper.toDomain);
+  }
+
+  async countManyByRecipientId(recipientId: string): Promise<number> {
+    const count = await this.prisma.notification.count({
+      where: {
+        recipientId,
+      },
+    });
+
+    return count;
   }
 
   async create(notification: Notification): Promise<void> {
@@ -21,10 +49,13 @@ export class PrismaNotificationRepository implements NotificationRepository {
   }
 
   async save(notification: Notification): Promise<void> {
-    throw new Error('Method not implemented.');
-  }
+    const raw = PrismaNotificationMapper.toPrisma(notification);
 
-  async countManyByRecipientId(recipientId: string): Promise<number> {
-    throw new Error('Method not implemented.');
+    await this.prisma.notification.update({
+      where: {
+        id: raw.id,
+      },
+      data: raw,
+    });
   }
 }
