@@ -1,7 +1,7 @@
 import { NotificationNotFound } from './errors/notification-not-found';
 import { InMemoryNotificationRepository } from '@test/repositories/in-memory-notifications-repository';
 import { Notification } from '@application/entities/notification';
-import { CancelNotification } from './Cancel-notification';
+import { CancelNotification } from './cancel-notification';
 import { Content } from '@application/entities/content';
 
 describe('Cancel notification', () => {

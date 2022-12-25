@@ -11,9 +11,15 @@ export class InMemoryNotificationRepository implements NotificationRepository {
 
     if (!notification) {
       return null;
-    } else {
-      return notification;
     }
+
+    return notification;
+  }
+
+  async countManyByRecipientId(recipientId: string): Promise<number> {
+    return this.notifications.filter(
+      (notification) => notification.recipientId === recipientId,
+    ).length;
   }
 
   async create(notification: Notification) {
