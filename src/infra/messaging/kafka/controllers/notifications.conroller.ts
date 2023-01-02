@@ -1,4 +1,4 @@
-import { SendNotification } from 'src/core/use-cases/send-notification';
+import { SendNotification } from '@core/application/use-cases/send-notification';
 import { Controller } from '@nestjs/common';
 import { EventPattern, Payload } from '@nestjs/microservices';
 

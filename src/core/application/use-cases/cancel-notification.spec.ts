@@ -1,14 +1,15 @@
 import { makeNotification } from '@test/factories/notification-factory';
-import { NotificationNotFound } from './errors/notification-not-found';
 import { InMemoryNotificationRepository } from '@test/repositories/in-memory-notifications-repository';
-import { Content } from 'src/core/entities/content';
 
-import { ReadNotification } from './read-notification';
+import { NotificationNotFound } from './errors/notification-not-found';
+import { CancelNotification } from './cancel-notification';
 
-describe('Read notification', () => {
-  it('should be able to read a notification', async () => {
+import { Content } from '@core/entities/content';
+
+describe('Cancel notification', () => {
+  it('should be able to cancel a notification', async () => {
     const notificationRepository = new InMemoryNotificationRepository();
-    const readNotification = new ReadNotification(notificationRepository);
+    const cancelNotification = new CancelNotification(notificationRepository);
 
     const notification = makeNotification({
       category: 'social',
@@ -18,21 +19,21 @@ describe('Read notification', () => {
 
     await notificationRepository.create(notification);
 
-    await readNotification.execute({
+    await cancelNotification.execute({
       notificationId: notification.id,
     });
 
-    expect(notificationRepository.notifications[0].readAt).toEqual(
+    expect(notificationRepository.notifications[0].canceledAt).toEqual(
       expect.any(Date),
     );
   });
 
-  it('should not be able to read a non existing notification', async () => {
+  it('should not be able to cancel a non existing notification', async () => {
     const notificationRepository = new InMemoryNotificationRepository();
-    const readNotification = new ReadNotification(notificationRepository);
+    const cancelNotification = new CancelNotification(notificationRepository);
 
     expect(() => {
-      return readNotification.execute({
+      return cancelNotification.execute({
         notificationId: 'fake-notification-id',
       });
     }).rejects.toThrow(NotificationNotFound);

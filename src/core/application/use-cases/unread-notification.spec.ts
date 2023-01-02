@@ -1,7 +1,7 @@
 import { makeNotification } from '@test/factories/notification-factory';
-import { NotificationNotFound } from './errors/notification-not-found';
 import { InMemoryNotificationRepository } from '@test/repositories/in-memory-notifications-repository';
 
+import { NotificationNotFound } from './errors/notification-not-found';
 import { UnreadNotification } from './unread-notification';
 
 describe('Unread notification', () => {

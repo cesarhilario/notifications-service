@@ -1,13 +1,14 @@
 import { makeNotification } from '@test/factories/notification-factory';
 import { NotificationNotFound } from './errors/notification-not-found';
 import { InMemoryNotificationRepository } from '@test/repositories/in-memory-notifications-repository';
-import { CancelNotification } from './cancel-notification';
-import { Content } from 'src/core/entities/content';
+import { Content } from '@core/entities/content';
 
-describe('Cancel notification', () => {
-  it('should be able to cancel a notification', async () => {
+import { ReadNotification } from './read-notification';
+
+describe('Read notification', () => {
+  it('should be able to read a notification', async () => {
     const notificationRepository = new InMemoryNotificationRepository();
-    const cancelNotification = new CancelNotification(notificationRepository);
+    const readNotification = new ReadNotification(notificationRepository);
 
     const notification = makeNotification({
       category: 'social',
@@ -17,21 +18,21 @@ describe('Cancel notification', () => {
 
     await notificationRepository.create(notification);
 
-    await cancelNotification.execute({
+    await readNotification.execute({
       notificationId: notification.id,
     });
 
-    expect(notificationRepository.notifications[0].canceledAt).toEqual(
+    expect(notificationRepository.notifications[0].readAt).toEqual(
       expect.any(Date),
     );
   });
 
-  it('should not be able to cancel a non existing notification', async () => {
+  it('should not be able to read a non existing notification', async () => {
     const notificationRepository = new InMemoryNotificationRepository();
-    const cancelNotification = new CancelNotification(notificationRepository);
+    const readNotification = new ReadNotification(notificationRepository);
 
     expect(() => {
-      return cancelNotification.execute({
+      return readNotification.execute({
         notificationId: 'fake-notification-id',
       });
     }).rejects.toThrow(NotificationNotFound);

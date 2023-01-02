@@ -1,11 +1,11 @@
-import { SendNotification } from '@core/use-cases/send-notification';
-import { ReadNotification } from '@core/use-cases/read-notification';
-import { UnreadNotification } from '@core/use-cases/unread-notification';
-import { GetRecipientNotifications } from '@core/use-cases/get-recipient-notifications';
-import { CountRecipientNotifications } from '@core/use-cases/count-recipient-notifications';
-import { CancelNotification } from '@core/use-cases/cancel-notification';
+import { SendNotification } from '@core/application/use-cases/send-notification';
+import { ReadNotification } from '@core/application/use-cases/read-notification';
+import { UnreadNotification } from '@core/application/use-cases/unread-notification';
+import { GetRecipientNotifications } from '@core/application/use-cases/get-recipient-notifications';
+import { CountRecipientNotifications } from '@core/application/use-cases/count-recipient-notifications';
+import { CancelNotification } from '@core/application/use-cases/cancel-notification';
 
-import { NotificationRepository } from '@core/repositories/notification-repository';
+import { NotificationRepository } from '@core/application/repositories/notification-repository';
 import { Provider } from '@nestjs/common/interfaces';
 
 export const NotificationsProviders: Provider[] = [

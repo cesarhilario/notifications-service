@@ -1,5 +1,5 @@
 import { NotificationNotFound } from './errors/notification-not-found';
-import { NotificationRepository } from '../repositories/notification-repository';
+import { NotificationRepository } from '@core/application/repositories/notification-repository';
 
 interface ReadNotificationRequest {
   notificationId: string;

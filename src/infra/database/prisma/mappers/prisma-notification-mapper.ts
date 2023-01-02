@@ -1,6 +1,6 @@
 import { Notification as RawNotification } from '@prisma/client';
 import { Notification } from 'src/core/entities/notification';
-import { Content } from 'src/core/entities/content';
+import { Content } from '@core/entities/content';
 
 export class PrismaNotificationMapper {
   static toPrisma(notification: Notification) {
