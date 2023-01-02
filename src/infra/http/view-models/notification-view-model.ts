@@ -1,4 +1,4 @@
-import { Notification } from '@application/entities/notification';
+import { Notification } from 'src/core/entities/notification';
 
 export class NotificationViewModel {
   static toHTTP(notification: Notification) {

@@ -1,5 +1,4 @@
-import { Notification } from '@application/entities/notification';
-import { Injectable } from '@nestjs/common';
+import { Notification } from 'src/core/entities/notification';
 import { NotificationRepository } from '../repositories/notification-repository';
 
 interface GetRecipientNotificationsRequest {
@@ -10,8 +9,6 @@ interface GetRecipientNotificationsResponse {
   notifications: Notification[];
 }
 
-// TODO: Remove Injectable
-@Injectable()
 export class GetRecipientNotifications {
   constructor(private notificationRepository: NotificationRepository) {}
 
